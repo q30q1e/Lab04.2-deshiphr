@@ -57,11 +57,14 @@ namespace ConsoleApp7
             string outp = string.Empty;
             List<char> tmp = new();
 
+            if (inp.Contains('j'))
+                inp.Replace('j', 'i');
+
             foreach (char c in inp)
             {
                 count = 0;
 
-                while (true)
+                while (count < 5)
                 {
                     for (int i = 0; i < 5; i++)
                     {
@@ -128,11 +131,11 @@ namespace ConsoleApp7
                 string temp = sr.ReadLine();
                 foreach (char c in temp)
                 {
-                    if (char.IsDigit(c) & temp[count + 1] == ',')
+                    if ((char.IsDigit(c) && temp.Length > count + 1) && temp[count + 1] == ',')
                     {
-                        //x = Convert.ToInt32(c);
-                        //y = Convert.ToInt32(temp[count + 2]);
-                        outp += plb[c - 1, temp[count + 2] - 1];
+                        x = (int)char.GetNumericValue(c);
+                        y = (int)char.GetNumericValue(temp[count + 2]);
+                        outp += plb[x - 1, y - 1];
                     }
                     count++;
                 }
